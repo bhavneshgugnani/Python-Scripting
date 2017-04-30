@@ -63,13 +63,13 @@ try:
   password_elem.submit() #or email.submit()
   #Can be improved using EC
   driver.implicitly_wait(load_timeout/2)
-  #login success
+  #login maybe success/failure. Only way to find is try extacting values.
   try:
     print("WEALTHFRONT INVESTMENTS")
     print("Net Assest Value : " + driver.find_element_by_xpath(asset_value_xpath).text)
     print("Net Deposit : " + driver.find_element_by_xpath(deposit_value_xpath).text)
   except:
-    print("Failed to extract values from UI.")
+    print("Failed to extract values from UI attributes. Login failure or XPaths changed.")
     raise
   finally:
     #logout
