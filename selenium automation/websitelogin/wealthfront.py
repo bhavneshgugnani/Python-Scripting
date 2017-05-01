@@ -39,16 +39,21 @@ options.add_argument("--kiosk")
 driver = webdriver.Chrome(chrome_options=options)
 driver.get(url)
 try:
+  assert 'Wealthfront' in driver.title
   #navigate to login page
   try:
     driver.find_element_by_xpath(nav_to_login_page_xpath).click()
   except:
-  	#incase not full screen, do 1 more click (website design)
-  	driver.find_element_by_xpath(expand_nav_to_login_page_xpath).click()
-  	driver.find_element_by_xpath(click_header_nav_to_login_page_xpath).click()
+    try:
+  	  #incase not full screen, try doing 1 more click (website design)
+  	  driver.find_element_by_xpath(expand_nav_to_login_page_xpath).click()
+  	  driver.find_element_by_xpath(click_header_nav_to_login_page_xpath).click()
+    except:
+      print("Failed to navigate to Login page.")
+      raise
   #wait till website loads
   try:
-    #email=driver.find_element_by_id("web_authentication_email")
+    #email=driver.find_element_by_id("username")
     email_elem=WebDriverWait(driver, load_timeout).until(EC.presence_of_element_located((By.ID, "username")))
   except TimeoutException as e:
     print("Failed to get element from page")

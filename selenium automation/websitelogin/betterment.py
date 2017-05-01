@@ -27,9 +27,13 @@ if len(sys.argv) < 3:
 email_val=sys.argv[1]
 password_val=sys.argv[2]
 
-driver=webdriver.Chrome()
+
+options = webdriver.ChromeOptions()
+options.add_argument("--kiosk")
+driver=webdriver.Chrome(chrome_options=options)
 driver.get(url)
 try:
+  assert "Betterment" in driver.title
   #wait till website loads
   try:
     #email=driver.find_element_by_id("web_authentication_email")
