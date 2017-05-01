@@ -24,7 +24,7 @@ def waitTillXPathClickableThenClick(xpath):
     element = WebDriverWait(driver, load_timeout).until(EC.element_to_be_clickable((By.XPATH, xpath)));
     element.click();
   except:
-    print("Faield to click XPath.")
+    print("Failed to click XPath.")
     raise
 
 print(sys.argv)

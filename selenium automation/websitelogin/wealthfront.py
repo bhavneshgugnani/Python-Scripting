@@ -30,7 +30,7 @@ def waitTillXPathClickableThenClick(xpath):
     element = WebDriverWait(driver, load_timeout).until(EC.element_to_be_clickable((By.XPATH, xpath)));
     element.click();
   except:
-    print("Faield to click XPath.")
+    print("Failed to click XPath.")
     raise
 
 print(sys.argv)
@@ -50,13 +50,10 @@ try:
   assert 'Wealthfront' in driver.title
   #navigate to login page
   try:
-    #driver.find_element_by_xpath(nav_to_login_page_xpath).click()
     waitTillXPathClickableThenClick(nav_to_login_page_xpath)
   except:
     try:
   	  #incase not full screen, try doing 1 more click (website design)
-  	  #driver.find_element_by_xpath(expand_nav_to_login_page_xpath).click()
-  	  #driver.find_element_by_xpath(click_header_nav_to_login_page_xpath).click()
       waitTillXPathClickableThenClick(expand_nav_to_login_page_xpath)
       waitTillXPathClickableThenClick(click_header_nav_to_login_page_xpath)
     except:
@@ -89,8 +86,6 @@ try:
     raise
   finally:
     #logout
-    #wdriver.find_element_by_xpath(logout_open_dropdown_xpath).click()
-    #driver.find_element_by_xpath(logout_xpath).click()
     waitTillXPathClickableThenClick(logout_open_dropdown_xpath)
     waitTillXPathClickableThenClick(logout_xpath)
     print("Logout Successfull!")
