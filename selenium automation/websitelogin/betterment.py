@@ -37,7 +37,7 @@ password_val=sys.argv[2]
 
 
 options = webdriver.ChromeOptions()
-options.add_argument("--kiosk")
+options.add_argument("--kiosk") # for mac; for windows, it is different
 driver=webdriver.Chrome(chrome_options=options)
 driver.get(url)
 try:
