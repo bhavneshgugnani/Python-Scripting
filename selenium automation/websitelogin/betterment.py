@@ -19,6 +19,14 @@ logout_xpath='/html/body/header[1]/nav[2]/ul/li[2]/ul/li[4]/form/button'
 #website address
 url='https://wwws.betterment.com'
 
+def waitTillXPathClickableThenClick(xpath):
+  try:
+    element = WebDriverWait(driver, load_timeout).until(EC.element_to_be_clickable((By.XPATH, xpath)));
+    element.click();
+  except:
+    print("Faield to click XPath.")
+    raise
+
 print(sys.argv)
 if len(sys.argv) < 3:
   print("Please provide valid email/password for Betterment account. For example, betterment.py <email> <password>.")
@@ -61,8 +69,8 @@ try:
     raise
   finally:
     #logout
-    driver.find_element_by_xpath(logout_open_dropdown_xpath).click()
-    driver.find_element_by_xpath(logout_xpath).click()
+    waitTillXPathClickableThenClick(logout_open_dropdown_xpath)
+    waitTillXPathClickableThenClick(logout_xpath)
     print("Logout Successfull!")
 except NoSuchElementException as e:
   print("Failure during execution")
